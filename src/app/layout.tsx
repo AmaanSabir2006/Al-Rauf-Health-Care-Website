@@ -20,7 +20,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Al Rauf Health Care | Prof. Dr. Muhammad Kamran Rauf | Consultant Physician & Endocrinologist, Lahore",
   description:
-    "Official digital booking portal for Al Rauf Health Care (Prof. Dr. Muhammad Kamran Rauf - FCPS, MRCP-SCE UK, EBEEDM Ireland, Professor of Medicine AMDC), 347- Riwaz Garden, Lahore. 5.0 Star rated, dedicated 20-minute consultation slots, direct Meezan Bank transfer verification, and expert clinical care.",
+    "Official digital booking portal for Al Rauf Health Care - Prof. Dr. Muhammad Kamran Rauf, Professor of Medicine at AMDC, 347- Riwaz Garden, Lahore. 5.0 Star rated, dedicated 20-minute consultation slots, direct Meezan Bank transfer verification, and expert clinical care.",
   keywords: [
     "Al Rauf Health Care",
     "Prof. Dr. Muhammad Kamran Rauf",
