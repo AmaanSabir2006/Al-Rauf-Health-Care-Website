@@ -232,34 +232,45 @@ export function validateBookingDate(dateStr: string): { valid: boolean; error?: 
 }
 
 /**
- * Validates and saves an uploaded payment transaction screenshot safely to disk.
- * Prevents DB bloating, restricts MIME types and file sizes, checks magic bytes.
- * Returns public relative web path e.g. "/uploads/receipts/rcpt-1234.jpg".
+/**
+ * Validates an uploaded payment screenshot (MIME type, size, magic bytes) in memory.
  */
-export function savePaymentReceipt(
+export function validateReceiptImage(
   receiptDataUrlOrPath: string
-): { success: boolean; filePath?: string; error?: string } {
+): {
+  valid: boolean;
+  buffer?: Buffer;
+  mimeType?: string;
+  extension?: string;
+  existingPath?: string;
+  error?: string;
+} {
   if (!receiptDataUrlOrPath || typeof receiptDataUrlOrPath !== "string") {
-    return { success: false, error: "Payment screenshot is strictly required." };
+    return { valid: false, error: "Payment screenshot is strictly required." };
   }
 
   const trimmed = receiptDataUrlOrPath.trim();
 
-  // If it's already an existing relative path or URL (e.g. demo sample receipt)
-  if (trimmed.startsWith("/images/") || trimmed.startsWith("/uploads/")) {
+  // If it's already an existing relative path or URL (e.g. demo sample receipt or Supabase public URL)
+  if (
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://") ||
+    trimmed.startsWith("/images/") ||
+    trimmed.startsWith("/uploads/")
+  ) {
     // Sanitize path traversal attempts
     const safePath = path.normalize(trimmed).replace(/\\/g, "/");
     if (safePath.includes("..")) {
-      return { success: false, error: "Invalid image path reference." };
+      return { valid: false, error: "Invalid image path reference." };
     }
-    return { success: true, filePath: safePath };
+    return { valid: true, existingPath: trimmed };
   }
 
   // Otherwise, validate Base64 Data URL: "data:image/jpeg;base64,..."
   const match = trimmed.match(/^data:(image\/(jpeg|png|webp));base64,(.+)$/i);
   if (!match) {
     return {
-      success: false,
+      valid: false,
       error: "Invalid image format. Supported formats are JPG, PNG, and WEBP.",
     };
   }
@@ -271,14 +282,14 @@ export function savePaymentReceipt(
   const buffer = Buffer.from(base64Data, "base64");
   if (buffer.length > 3.5 * 1024 * 1024) {
     return {
-      success: false,
+      valid: false,
       error: "Screenshot exceeds maximum file size limit (3.5 MB).",
     };
   }
 
   if (buffer.length < 100) {
     return {
-      success: false,
+      valid: false,
       error: "Uploaded image file is empty or corrupted.",
     };
   }
@@ -306,9 +317,33 @@ export function savePaymentReceipt(
     extension = "webp";
   } else {
     return {
-      success: false,
+      valid: false,
       error: "File content does not match genuine image header signatures.",
     };
+  }
+
+  return { valid: true, buffer, mimeType, extension };
+}
+
+/**
+ * Validates and saves an uploaded payment transaction screenshot safely to disk.
+ * Returns public relative web path e.g. "/uploads/receipts/rcpt-1234.jpg".
+ */
+export function savePaymentReceipt(
+  receiptDataUrlOrPath: string
+): { success: boolean; filePath?: string; error?: string } {
+  const validated = validateReceiptImage(receiptDataUrlOrPath);
+  if (!validated.valid) {
+    return { success: false, error: validated.error };
+  }
+
+  if (validated.existingPath) {
+    return { success: true, filePath: validated.existingPath };
+  }
+
+  const { buffer, extension } = validated;
+  if (!buffer || !extension) {
+    return { success: false, error: "Invalid image data." };
   }
 
   try {
@@ -326,60 +361,102 @@ export function savePaymentReceipt(
     const publicUrl = `/uploads/receipts/${filename}`;
     return { success: true, filePath: publicUrl };
   } catch (err) {
-    console.error("Failed to write receipt image to disk:", err);
-    return { success: false, error: "Failed to securely persist receipt image." };
+    console.error("Local filesystem write failed (read-only environment):", err);
+    // In serverless read-only environment, fallback to returning the validated data URL if small
+    if (buffer.length <= 500 * 1024 && receiptDataUrlOrPath.startsWith("data:image")) {
+      return { success: true, filePath: receiptDataUrlOrPath };
+    }
+    return { success: false, error: "Failed to persist receipt image to disk." };
   }
 }
 
 /**
  * Validates and saves an uploaded payment transaction screenshot.
- * Automatically uploads to Supabase Storage if configured, or falls back to local disk.
+ * Automatically uploads to Supabase Storage if configured, or falls back to local disk / cloud URL.
  */
 export async function savePaymentReceiptAsync(
   receiptDataUrlOrPath: string
 ): Promise<{ success: boolean; filePath?: string; error?: string }> {
-  // First run the synchronous validation checks (MIME type, size, magic bytes)
-  const syncResult = savePaymentReceipt(receiptDataUrlOrPath);
-  if (!syncResult.success) {
-    return syncResult;
+  const validated = validateReceiptImage(receiptDataUrlOrPath);
+  if (!validated.valid) {
+    return { success: false, error: validated.error };
   }
 
-  // If Supabase is configured and this is an uploaded base64 data URL, upload to Supabase Storage
-  if (isSupabaseConfigured() && receiptDataUrlOrPath.startsWith("data:image")) {
+  if (validated.existingPath) {
+    return { success: true, filePath: validated.existingPath };
+  }
+
+  const { buffer, mimeType, extension } = validated;
+  if (!buffer || !mimeType || !extension) {
+    return { success: false, error: "Invalid image data." };
+  }
+
+  // 1. If Supabase is configured, upload directly to Supabase Storage bucket 'clinic-receipts'
+  if (isSupabaseConfigured()) {
     const supabase = getSupabaseAdmin();
     if (supabase) {
       try {
-        const match = receiptDataUrlOrPath.match(/^data:(image\/(jpeg|png|webp));base64,(.+)$/i);
-        if (match) {
-          const mimeType = match[1].toLowerCase();
-          const buffer = Buffer.from(match[3], "base64");
-          const ext = mimeType.split("/")[1] === "jpeg" ? "jpg" : mimeType.split("/")[1];
-          const fileName = `rcpt-${Date.now()}-${crypto.randomBytes(6).toString("hex")}.${ext}`;
+        const fileName = `rcpt-${Date.now()}-${crypto.randomBytes(6).toString("hex")}.${extension}`;
 
-          const { data: uploadData, error: uploadErr } = await supabase.storage
+        let uploadRes = await supabase.storage
+          .from("clinic-receipts")
+          .upload(fileName, buffer, {
+            contentType: mimeType,
+            upsert: false,
+          });
+
+        // Auto-create bucket if missing and retry
+        if (uploadRes.error && uploadRes.error.message?.toLowerCase().includes("bucket not found")) {
+          await supabase.storage.createBucket("clinic-receipts", { public: true });
+          uploadRes = await supabase.storage
             .from("clinic-receipts")
             .upload(fileName, buffer, {
               contentType: mimeType,
               upsert: false,
             });
+        }
 
-          if (!uploadErr && uploadData) {
-            const { data: pubData } = supabase.storage
-              .from("clinic-receipts")
-              .getPublicUrl(fileName);
-            if (pubData && pubData.publicUrl) {
-              return { success: true, filePath: pubData.publicUrl };
-            }
-          } else {
-            console.warn("Supabase Storage upload warning, falling back to local file:", uploadErr);
+        if (!uploadRes.error && uploadRes.data) {
+          const { data: pubData } = supabase.storage
+            .from("clinic-receipts")
+            .getPublicUrl(fileName);
+          if (pubData && pubData.publicUrl) {
+            return { success: true, filePath: pubData.publicUrl };
           }
+        } else {
+          console.warn("Supabase Storage upload warning:", uploadRes.error);
         }
       } catch (err) {
-        console.warn("Supabase Storage upload error, falling back to local file:", err);
+        console.warn("Supabase Storage upload error:", err);
       }
     }
   }
 
-  return syncResult;
+  // 2. Fall back to local disk (for localhost offline development)
+  try {
+    const uploadDir = path.join(process.cwd(), "public", "uploads", "receipts");
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    const uniqueId = `rcpt-${Date.now()}-${crypto.randomBytes(6).toString("hex")}`;
+    const filename = `${uniqueId}.${extension}`;
+    const absolutePath = path.join(uploadDir, filename);
+
+    fs.writeFileSync(absolutePath, buffer);
+
+    const publicUrl = `/uploads/receipts/${filename}`;
+    return { success: true, filePath: publicUrl };
+  } catch (err) {
+    console.warn("Local disk write unavailable (expected on serverless platforms):", err);
+  }
+
+  // 3. Fallback: If on serverless where filesystem is read-only and Supabase storage was unreachable,
+  // return the validated base64 data URL so patient booking is preserved without rejection
+  if (receiptDataUrlOrPath.startsWith("data:image")) {
+    return { success: true, filePath: receiptDataUrlOrPath };
+  }
+
+  return { success: false, error: "Failed to persist receipt image." };
 }
 
