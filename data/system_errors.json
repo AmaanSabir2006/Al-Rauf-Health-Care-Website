@@ -1,0 +1,64 @@
+[
+  {
+    "id": "ERR-MVWCE31Q-578V",
+    "timestamp": "2026-10-31T11:53:12.686Z",
+    "level": "error",
+    "source": "api",
+    "message": "Route /api/slots needs to bail out of prerendering at this point because it used request.url.",
+    "stack": "Error: Route /api/slots needs to bail out of prerendering at this point because it used request.url.\n    at ru (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:1:146163)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:7:663\n    at no (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:7:750)\n    at Object.get (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:21366)\n    at s (C:\\Users\\User\\Documents\\Clinic Website\\.next\\server\\chunks\\_1xswh4k3itqkf._.js:1:6446)\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at Immediate._onImmediate (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:13540)\n    at process.processImmediate (node:internal/timers:504:21)",
+    "url": "/api/slots"
+  },
+  {
+    "id": "ERR-MVWCE31K-90FR",
+    "timestamp": "2026-10-31T11:53:12.680Z",
+    "level": "error",
+    "source": "api",
+    "message": "Route /api/stats needs to bail out of prerendering at this point because it used request.headers.",
+    "stack": "Error: Route /api/stats needs to bail out of prerendering at this point because it used request.headers.\n    at ru (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:1:146163)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:7:663\n    at no (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:7:750)\n    at Object.get (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:21366)\n    at C:\\Users\\User\\Documents\\Clinic Website\\.next\\server\\chunks\\[root-of-the-server]__1roni39_jtoiq._.js:27:65439\n    at i (C:\\Users\\User\\Documents\\Clinic Website\\.next\\server\\chunks\\_1vs13eoezymcn._.js:1:6429)\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at Immediate._onImmediate (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:13540)\n    at process.processImmediate (node:internal/timers:504:21)",
+    "url": "/api/stats"
+  },
+  {
+    "id": "ERR-MVWCE2YA-6O9A",
+    "timestamp": "2026-10-31T11:53:12.562Z",
+    "level": "error",
+    "source": "api",
+    "message": "Route /api/slots needs to bail out of prerendering at this point because it used request.url.",
+    "stack": "Error: Route /api/slots needs to bail out of prerendering at this point because it used request.url.\n    at ru (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:1:146163)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:7:663\n    at no (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:7:750)\n    at Object.get (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:21366)\n    at s (C:\\Users\\User\\Documents\\Clinic Website\\.next\\server\\chunks\\_1xswh4k3itqkf._.js:1:6446)\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at r0.prerenderToResponse (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:12116)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:19132\n    at NextTracerImpl.trace (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:180:72)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:19028\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:18322\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:18290\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at r0.executePrerender (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:18254)\n    at r0.prerender (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:19776)\n    at async exportAppRoute (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\export\\routes\\app-route.js:93:26)\n    at async Span.traceAsyncFn (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\trace\\trace.js:168:20)\n    at async exportPage (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\export\\worker.js:385:18)\n    at async exportPageWithRetry (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\export\\worker.js:274:26)\n    at async Promise.all (index 6)\n    at async Object.exportPages (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\export\\worker.js:362:31)",
+    "url": "/api/slots"
+  },
+  {
+    "id": "ERR-MVWCE2Y0-5GYR",
+    "timestamp": "2026-10-31T11:53:12.552Z",
+    "level": "error",
+    "source": "api",
+    "message": "Route /api/stats needs to bail out of prerendering at this point because it used request.headers.",
+    "stack": "Error: Route /api/stats needs to bail out of prerendering at this point because it used request.headers.\n    at ru (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:1:146163)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:7:663\n    at no (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:7:750)\n    at Object.get (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:21366)\n    at C:\\Users\\User\\Documents\\Clinic Website\\.next\\server\\chunks\\[root-of-the-server]__1roni39_jtoiq._.js:27:65439\n    at i (C:\\Users\\User\\Documents\\Clinic Website\\.next\\server\\chunks\\_1vs13eoezymcn._.js:1:6429)\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at r0.prerenderToResponse (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:12116)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:19132\n    at NextTracerImpl.trace (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:180:72)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:19028\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:18322\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:18290\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at r0.executePrerender (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:18254)\n    at r0.prerender (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\compiled\\next-server\\app-route-turbo.runtime.prod.js:5:19776)\n    at async exportAppRoute (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\export\\routes\\app-route.js:93:26)\n    at async Span.traceAsyncFn (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\trace\\trace.js:168:20)\n    at async exportPage (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\export\\worker.js:385:18)\n    at async exportPageWithRetry (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\export\\worker.js:274:26)\n    at async Promise.all (index 7)\n    at async Object.exportPages (C:\\Users\\User\\Documents\\Clinic Website\\node_modules\\next\\dist\\export\\worker.js:362:31)",
+    "url": "/api/stats"
+  },
+  {
+    "id": "ERR-MVW7S7EI-IOR2",
+    "timestamp": "2026-10-31T09:44:13.434Z",
+    "level": "error",
+    "source": "client",
+    "message": "Invalid src prop (https://wpkqodxmzlbdjlyaftng.supabase.co/storage/v1/object/public/clinic-receipts/rcpt-1793439792089-af7c548e5ea5.jpg) on `next/image`, hostname \"wpkqodxmzlbdjlyaftng.supabase.co\" is not configured under images in your `next.config.js`\nSee more info: https://nextjs.org/docs/messages/next-image-unconfigured-host",
+    "url": "http://localhost:3000/reception",
+    "context": {
+      "component": "Reception_Desk_Boundary",
+      "action": "reception_ui_crash"
+    },
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+  },
+  {
+    "id": "ERR-MVW7S7CW-MFZ0",
+    "timestamp": "2026-10-31T09:44:13.376Z",
+    "level": "error",
+    "source": "client",
+    "message": "Invalid src prop (https://wpkqodxmzlbdjlyaftng.supabase.co/storage/v1/object/public/clinic-receipts/rcpt-1793439792089-af7c548e5ea5.jpg) on `next/image`, hostname \"wpkqodxmzlbdjlyaftng.supabase.co\" is not configured under images in your `next.config.js`\nSee more info: https://nextjs.org/docs/messages/next-image-unconfigured-host",
+    "url": "http://localhost:3000/reception",
+    "context": {
+      "component": "Reception_Desk_Boundary",
+      "action": "reception_ui_crash"
+    },
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+  }
+]
