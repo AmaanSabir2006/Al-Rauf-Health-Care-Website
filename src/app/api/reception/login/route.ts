@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     const body = await request.json().catch(() => ({}));
     const pin = typeof body.pin === "string" ? body.pin.trim() : "";
 
-    if (pin === RECEPTION_PIN || pin === "Adil001Bhai110Adil") {
+    if (pin === RECEPTION_PIN) {
       // Clear rate limit on successful authentication
       resetRateLimit(clientIp, "login");
 
