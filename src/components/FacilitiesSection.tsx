@@ -230,7 +230,7 @@ export default function FacilitiesSection() {
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 With more than 18 years of distinguished clinical experience,{" "}
                 <strong>Prof. Dr. Muhammad Kamran Rauf</strong> (Professor of Medicine,
-                Fatima Memorial Hospital) established <strong>Al Rauf Health Care</strong> at 347-
+                AMDC) established <strong>Al Rauf Health Care</strong> at 347-
                 Riwaz Garden, Lahore to provide compassionate outpatient consultations, specialized
                 endocrinology & diabetes care, and structured 20-minute scheduling.
               </p>
@@ -239,7 +239,7 @@ export default function FacilitiesSection() {
                 <div className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
                   <span>
-                    <strong>Academic Faculty:</strong> Professor of Medicine at Fatima Memorial Hospital.
+                    <strong>Academic Faculty:</strong> Professor of Medicine at AMDC.
                   </span>
                 </div>
                 <div className="flex items-start gap-2.5">
