@@ -141,11 +141,45 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
     fetchSlots();
   }, [selectedDoctor, selectedDate]);
 
-  // Copy to clipboard helper
+  // Copy to clipboard helper with mobile fallback
   const copyToClipboard = (text: string, type: string) => {
-    navigator.clipboard.writeText(text);
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => {
+          fallbackCopyText(text);
+        });
+      } else {
+        fallbackCopyText(text);
+      }
+    } catch {
+      fallbackCopyText(text);
+    }
     setCopiedAccount(type);
     setTimeout(() => setCopiedAccount(null), 2500);
+  };
+
+  const fallbackCopyText = (text: string) => {
+    try {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.width = "2em";
+      textArea.style.height = "2em";
+      textArea.style.padding = "0";
+      textArea.style.border = "none";
+      textArea.style.outline = "none";
+      textArea.style.boxShadow = "none";
+      textArea.style.background = "transparent";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+    } catch (err) {
+      console.warn("Fallback copy failed:", err);
+    }
   };
 
   // Image Upload handler
@@ -1023,33 +1057,49 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                     <p className="text-[11px] text-slate-500 mt-0.5">Please verify name displays as M Asif</p>
                   </div>
 
-                  <div>
-                    <p className="text-xs text-slate-500 font-medium mb-1">Account Number:</p>
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-emerald-300 shadow-2xs">
-                      <span className="font-mono text-base sm:text-lg font-black text-slate-900 tracking-wider">
-                        {CLINIC_INFO.bankAccountNumber}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          copyToClipboard(CLINIC_INFO.bankAccountNumber, "meezan");
-                        }}
-                        className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs"
-                      >
-                        {copiedAccount === "meezan" ? (
-                          <>
-                            <Check className="w-3.5 h-3.5 text-white" />
-                            <span className="text-[11px]">Copied!</span>
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="w-3.5 h-3.5" />
-                            <span className="text-[11px]">Copy Number</span>
-                          </>
-                        )}
-                      </button>
+                  <div className="w-full">
+                    <p className="text-xs text-slate-500 font-medium mb-1.5 flex items-center justify-between">
+                      <span>Meezan Bank Account Number:</span>
+                      <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded">14-Digit</span>
+                    </p>
+                    <div
+                      onClick={() => copyToClipboard(CLINIC_INFO.bankAccountNumber, "meezan")}
+                      className="p-3 rounded-xl bg-white border-2 border-emerald-300 hover:border-emerald-500 shadow-2xs transition-all cursor-pointer group"
+                    >
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-base sm:text-lg font-black text-slate-900 tracking-wider select-all break-all">
+                            {CLINIC_INFO.bankAccountNumber}
+                          </span>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            copyToClipboard(CLINIC_INFO.bankAccountNumber, "meezan");
+                          }}
+                          className={`w-full sm:w-auto px-4 py-2.5 sm:py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-95 shrink-0 ${
+                            copiedAccount === "meezan"
+                              ? "bg-emerald-800 text-white shadow-sm ring-2 ring-emerald-400"
+                              : "bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white shadow-sm"
+                          }`}
+                        >
+                          {copiedAccount === "meezan" ? (
+                            <>
+                              <Check className="w-4 h-4 text-emerald-300 shrink-0" />
+                              <span className="font-extrabold tracking-wide">Account Number Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-4 h-4 text-white shrink-0" />
+                              <span>Copy Account Number</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
                     </div>
+                    <p className="text-[10px] text-slate-400 mt-1 text-right sm:text-left">Tap box or button to copy</p>
                   </div>
                 </div>
               </div>
