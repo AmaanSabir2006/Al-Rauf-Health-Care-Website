@@ -229,8 +229,8 @@ export default function FacilitiesSection() {
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 With more than 18 years of distinguished clinical experience,{" "}
-                <strong>Prof. Dr. Muhammad Kamran Rauf</strong> (Professor of Medicine,
-                AMDC) established <strong>Al Rauf Health Care</strong> at 347-
+                <strong>Prof. Dr. Muhammad Kamran Rauf</strong>, Professor of Medicine at AMDC,
+                established <strong>Al Rauf Health Care</strong> at 347-
                 Riwaz Garden, Lahore to provide compassionate outpatient consultations, specialized
                 endocrinology & diabetes care, and structured 20-minute scheduling.
               </p>
@@ -290,11 +290,10 @@ export default function FacilitiesSection() {
                   key={fac.id}
                   suppressHydrationWarning
                   onClick={() => setActiveFacilityId(fac.id)}
-                  className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 border shadow-2xs ${
-                    isSelected
+                  className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 border shadow-2xs ${isSelected
                       ? "bg-teal-700 text-white border-teal-700 shadow-md shadow-teal-700/20 scale-[1.02]"
                       : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100 hover:text-teal-700"
-                  }`}
+                    }`}
                 >
                   <span>{fac.tabLabel}</span>
                   {isSelected && (
@@ -364,11 +363,10 @@ export default function FacilitiesSection() {
                         type="button"
                         suppressHydrationWarning
                         onClick={() => setActiveFacilityId(fac.id)}
-                        className={`relative rounded-xl overflow-hidden aspect-4/3 border-2 transition-all cursor-pointer ${
-                          isSelected
+                        className={`relative rounded-xl overflow-hidden aspect-4/3 border-2 transition-all cursor-pointer ${isSelected
                             ? "border-teal-600 ring-2 ring-teal-500/40 scale-105 shadow-md"
                             : "border-slate-200 opacity-60 hover:opacity-100 hover:border-slate-300"
-                        }`}
+                          }`}
                         title={fac.tabLabel}
                       >
                         <Image
@@ -446,11 +444,10 @@ export default function FacilitiesSection() {
               <div
                 key={fac.id}
                 onClick={() => setActiveFacilityId(fac.id)}
-                className={`p-4 rounded-2xl bg-white border transition-all cursor-pointer group ${
-                  activeFacilityId === fac.id
+                className={`p-4 rounded-2xl bg-white border transition-all cursor-pointer group ${activeFacilityId === fac.id
                     ? "border-teal-500 shadow-md ring-1 ring-teal-500/30"
                     : "border-slate-200 hover:border-teal-300 hover:shadow-sm"
-                }`}
+                  }`}
               >
                 <div className="relative rounded-xl overflow-hidden aspect-16/10 mb-3 bg-slate-100">
                   <Image
