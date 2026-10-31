@@ -69,11 +69,11 @@ export default function HeroSection({
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Direct JazzCash & EasyPaisa</span>
+                <span>Direct Meezan Bank Transfer</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>3 PMC Verified Specialists</span>
+                <span>3 PMDC Verified Specialists</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />

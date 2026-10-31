@@ -20,7 +20,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Al Rauf Health Care | Prof. Dr. Muhammad Kamran Rauf | Consultant Physician & Endocrinologist, Lahore",
   description:
-    "Official digital booking portal for Al Rauf Health Care (Prof. Dr. Muhammad Kamran Rauf - FCPS, MRCP-SCE UK, EBEEDM Ireland, Associate Professor FMH), 347- Riwaz Garden, Lahore. 5.0 Star rated, dedicated 20-minute consultation slots, direct JazzCash/EasyPaisa verification, and expert clinical care.",
+    "Official digital booking portal for Al Rauf Health Care (Prof. Dr. Muhammad Kamran Rauf - FCPS, MRCP-SCE UK, EBEEDM Ireland, Professor of Medicine FMH), 347- Riwaz Garden, Lahore. 5.0 Star rated, dedicated 20-minute consultation slots, direct Meezan Bank transfer verification, and expert clinical care.",
   keywords: [
     "Al Rauf Health Care",
     "Prof. Dr. Muhammad Kamran Rauf",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     "Clinic Riwaz Garden",
     "Doctor Lahore Riwaz Garden",
     "Doctor Appointment Lahore",
-    "JazzCash clinic booking",
-    "EasyPaisa doctor booking",
+    "Meezan Bank clinic transfer",
+    "PMDC registered doctor Lahore",
     "Al Rauf Clinic Lahore",
   ],
   authors: [{ name: "Al Rauf Health Care - Prof. Dr. Muhammad Kamran Rauf" }],

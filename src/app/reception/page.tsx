@@ -85,7 +85,7 @@ export default function ReceptionDesk() {
   const [walkInPhone, setWalkInPhone] = useState("");
   const [walkInAge, setWalkInAge] = useState<number | "">(30);
   const [walkInGender, setWalkInGender] = useState<"Male" | "Female" | "Child">("Male");
-  const [walkInPayment, setWalkInPayment] = useState<"JazzCash" | "EasyPaisa">("JazzCash");
+  const [walkInPayment, setWalkInPayment] = useState<string>("Meezan Bank");
 
   // System Diagnostics modal
   const [showDiagnosticsModal, setShowDiagnosticsModal] = useState<boolean>(false);
@@ -704,7 +704,7 @@ export default function ReceptionDesk() {
               <p className="text-2xl sm:text-3xl font-black">
                 PKR {stats.todayRevenue.toLocaleString()}
               </p>
-              <p className="text-[11px] text-slate-400 mt-1">Direct via JazzCash &amp; EasyPaisa</p>
+              <p className="text-[11px] text-slate-400 mt-1">Direct via Meezan Bank Transfer &amp; Cash</p>
             </div>
           </div>
         )}
@@ -773,7 +773,7 @@ export default function ReceptionDesk() {
                   <span className="text-[10px] bg-amber-500 text-white px-2 py-0.5 rounded-full font-bold">Action Needed</span>
                 </p>
                 <p className="text-[11px] text-amber-800">
-                  Patients have submitted payment proof via JazzCash/EasyPaisa. Inspect screenshot proof and click &quot;Approve Slot&quot; to officially confirm.
+                  Patients have submitted payment proof via Meezan Bank Transfer. Inspect screenshot proof and click &quot;Approve Slot&quot; to officially confirm.
                 </p>
               </div>
             </div>
@@ -1045,12 +1045,14 @@ export default function ReceptionDesk() {
                         <td className="py-4 px-4 align-top">
                           <span
                             className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                              apt.paymentMethod === "JazzCash"
-                                ? "bg-red-100 text-red-800"
-                                : "bg-emerald-100 text-emerald-800"
+                              apt.paymentMethod === "Meezan Bank"
+                                ? "bg-emerald-100 text-emerald-800"
+                                : apt.paymentMethod === "JazzCash"
+                                ? "bg-amber-100 text-amber-800"
+                                : "bg-teal-100 text-teal-800"
                             }`}
                           >
-                            {apt.paymentMethod}
+                            {apt.paymentMethod || "Meezan Bank"}
                           </span>
                           <p className="text-xs font-semibold text-slate-800 mt-1">
                             {apt.senderName}
@@ -1277,12 +1279,14 @@ export default function ReceptionDesk() {
                         <div className="flex items-center gap-1.5 mb-1">
                           <span
                             className={`px-2 py-0.5 rounded text-[10px] font-black uppercase ${
-                              apt.paymentMethod === "JazzCash"
-                                ? "bg-red-100 text-red-800"
-                                : "bg-emerald-100 text-emerald-800"
+                              apt.paymentMethod === "Meezan Bank"
+                                ? "bg-emerald-100 text-emerald-800"
+                                : apt.paymentMethod === "JazzCash"
+                                ? "bg-amber-100 text-amber-800"
+                                : "bg-teal-100 text-teal-800"
                             }`}
                           >
-                            {apt.paymentMethod}
+                            {apt.paymentMethod || "Meezan Bank"}
                           </span>
                           <span className="text-slate-400">•</span>
                           <span className="font-bold text-slate-900">PKR {apt.doctorFee}</span>
@@ -1608,8 +1612,8 @@ export default function ReceptionDesk() {
                     onChange={(e) => setWalkInPayment(e.target.value as any)}
                     className="w-full p-2.5 rounded-xl border border-slate-300 text-sm"
                   >
-                    <option value="JazzCash">Cash / JazzCash at Desk</option>
-                    <option value="EasyPaisa">EasyPaisa</option>
+                    <option value="Meezan Bank">Meezan Bank Transfer</option>
+                    <option value="Cash">Cash at Reception Desk</option>
                   </select>
                 </div>
               </div>

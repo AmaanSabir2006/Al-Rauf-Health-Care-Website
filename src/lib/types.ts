@@ -35,9 +35,7 @@ export interface Appointment {
   doctorFee: number;
   doctorRoom: string;
   date: string; // "YYYY-MM-DD"
-  timeSlot: string; // "02:20 PM"
-  paymentMethod: "JazzCash" | "EasyPaisa";
-  senderName: string;
+  paymentMethod: "Meezan Bank" | "JazzCash" | "EasyPaisa" | string;
   trxId: string;
   receiptUrl: string; // URL or base64 data URI
   status: AppointmentStatus;

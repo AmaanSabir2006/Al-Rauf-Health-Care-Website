@@ -71,7 +71,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
   const [reasonForVisit, setReasonForVisit] = useState("");
 
   // Payment Form
-  const [paymentMethod, setPaymentMethod] = useState<"JazzCash" | "EasyPaisa">("JazzCash");
+  const [paymentMethod, setPaymentMethod] = useState<string>("Meezan Bank");
   const [senderName, setSenderName] = useState("");
   const [trxId, setTrxId] = useState("");
   const [receiptImage, setReceiptImage] = useState<string | null>(null);
@@ -177,7 +177,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
   // Quick Demo: Load sample receipt
   const loadSampleReceipt = async () => {
     setReceiptImage("/images/sample-receipt.jpg");
-    setReceiptFileName("jazzcash_receipt_verified.jpg");
+    setReceiptFileName("meezan_bank_receipt.jpg");
     setSenderName("Muhammad Zubair");
     setTrxId("TRX-98314207");
     setErrorMessage(null);
@@ -185,7 +185,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
     try {
       const res = await fetch("/images/sample-receipt.jpg");
       const blob = await res.blob();
-      const file = new File([blob], "jazzcash_receipt_verified.jpg", {
+      const file = new File([blob], "meezan_bank_receipt.jpg", {
         type: blob.type || "image/jpeg",
       });
       setReceiptRawFile(file);
@@ -225,7 +225,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
     }
 
     if (!senderName.trim()) {
-      setErrorMessage("Please enter the sender's account name as shown on JazzCash/EasyPaisa.");
+      setErrorMessage("Please enter the sender's account title as shown on your bank/transfer app.");
       return;
     }
 
@@ -813,7 +813,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
           </div>
         )}
 
-        {/* ================= STEP 2: PATIENT INFO & MANUAL JAZZCASH / EASYPAISA ================= */}
+        {/* ================= STEP 2: PATIENT INFO & MEEZAN BANK TRANSFER ================= */}
         {wizardStep === 2 && (
           <form
             onSubmit={handleFinalSubmit}
@@ -973,12 +973,12 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
               </div>
             </div>
 
-            {/* PART 2: MANUAL JAZZCASH / EASYPAISA TRANSFER CARD */}
+            {/* PART 2: MANUAL MEEZAN BANK TRANSFER CARD */}
             <div className="mb-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                 <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
                   <CreditCard className="w-4 h-4 text-emerald-600" />
-                  <span>Step 2: Manual Fee Transfer (JazzCash & EasyPaisa)</span>
+                  <span>Step 2: Fee Transfer (Meezan Bank)</span>
                 </h3>
                 <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
                   Fee: PKR {selectedDoctor.fee.toLocaleString()}
@@ -987,121 +987,69 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
 
               {/* Instructions banner */}
               <div className="mb-5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 space-y-1">
-                <p className="font-bold text-slate-900">How to reserve your slot:</p>
+                <p className="font-bold text-slate-900">How to transfer your consultation fee:</p>
                 <ol className="list-decimal list-inside space-y-0.5 text-slate-600">
-                  <li>Open your <strong>JazzCash</strong> or <strong>EasyPaisa</strong> mobile application.</li>
-                  <li>Transfer <strong>PKR {selectedDoctor.fee.toLocaleString()}</strong> to either clinic account below.</li>
+                  <li>Open any banking application (<strong>Meezan Bank, HBL, UBL, EasyPaisa, JazzCash, SadaPay, NayaPay</strong>, etc.).</li>
+                  <li>Select <strong>Meezan Bank</strong> as the destination bank and transfer <strong>PKR {selectedDoctor.fee.toLocaleString()}</strong> to the official account below.</li>
                   <li>Take a screenshot of the completed transfer confirmation and upload it in Step 3.</li>
                 </ol>
               </div>
 
-              {/* Accounts Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* JazzCash Card */}
-                <div
-                  onClick={() => setPaymentMethod("JazzCash")}
-                  className={`p-4 rounded-2xl border-2 transition-all cursor-pointer relative ${
-                    paymentMethod === "JazzCash"
-                      ? "border-amber-500 bg-amber-50/40 shadow-sm"
-                      : "border-slate-200 hover:border-slate-300 bg-white"
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="px-2 py-0.5 rounded text-[11px] font-black uppercase tracking-wider bg-red-600 text-white">
-                      JazzCash
-                    </span>
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      checked={paymentMethod === "JazzCash"}
-                      onChange={() => setPaymentMethod("JazzCash")}
-                      className="accent-amber-600 w-4 h-4 cursor-pointer"
-                    />
+              {/* Official Meezan Bank Card */}
+              <div className="p-5 rounded-2xl border-2 border-emerald-500 bg-gradient-to-br from-emerald-50/50 via-teal-50/20 to-white shadow-sm relative overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-emerald-200/60 mb-3.5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-black text-xs shadow-2xs">
+                      MB
+                    </div>
+                    <div>
+                      <span className="text-xs font-black uppercase tracking-wider text-emerald-950">
+                        {CLINIC_INFO.bankName}
+                      </span>
+                      <p className="text-[10px] text-emerald-700 font-semibold">Official Clinic Account</p>
+                    </div>
                   </div>
-
-                  <p className="text-xs text-slate-500">Account Title:</p>
-                  <p className="text-sm font-extrabold text-slate-900 mb-2">
-                    {CLINIC_INFO.jazzCashTitle}
-                  </p>
-
-                  <div className="flex items-center justify-between p-2 rounded-xl bg-white border border-slate-200">
-                    <span className="font-mono text-sm sm:text-base font-extrabold text-slate-800 tracking-wider">
-                      {CLINIC_INFO.jazzCashNumber}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        copyToClipboard(CLINIC_INFO.jazzCashNumber, "jazzcash");
-                      }}
-                      className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center gap-1 cursor-pointer transition-colors"
-                    >
-                      {copiedAccount === "jazzcash" ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 text-emerald-600" />
-                          <span className="text-[11px] text-emerald-700 font-bold">Copied</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3.5 h-3.5" />
-                          <span className="text-[11px]">Copy</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
+                  <span className="self-start sm:self-auto px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    Direct Account Transfer
+                  </span>
                 </div>
 
-                {/* EasyPaisa Card */}
-                <div
-                  onClick={() => setPaymentMethod("EasyPaisa")}
-                  className={`p-4 rounded-2xl border-2 transition-all cursor-pointer relative ${
-                    paymentMethod === "EasyPaisa"
-                      ? "border-emerald-500 bg-emerald-50/40 shadow-sm"
-                      : "border-slate-200 hover:border-slate-300 bg-white"
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="px-2 py-0.5 rounded text-[11px] font-black uppercase tracking-wider bg-emerald-600 text-white">
-                      EasyPaisa
-                    </span>
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      checked={paymentMethod === "EasyPaisa"}
-                      onChange={() => setPaymentMethod("EasyPaisa")}
-                      className="accent-emerald-600 w-4 h-4 cursor-pointer"
-                    />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                  <div>
+                    <p className="text-xs text-slate-500 font-medium">Account Title / Beneficiary:</p>
+                    <p className="text-base font-extrabold text-slate-900 mt-0.5">
+                      {CLINIC_INFO.bankAccountTitle}
+                    </p>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Please verify name displays as M Asif</p>
                   </div>
 
-                  <p className="text-xs text-slate-500">Account Title:</p>
-                  <p className="text-sm font-extrabold text-slate-900 mb-2">
-                    {CLINIC_INFO.easyPaisaTitle}
-                  </p>
-
-                  <div className="flex items-center justify-between p-2 rounded-xl bg-white border border-slate-200">
-                    <span className="font-mono text-sm sm:text-base font-extrabold text-slate-800 tracking-wider">
-                      {CLINIC_INFO.easyPaisaNumber}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        copyToClipboard(CLINIC_INFO.easyPaisaNumber, "easypaisa");
-                      }}
-                      className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center gap-1 cursor-pointer transition-colors"
-                    >
-                      {copiedAccount === "easypaisa" ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 text-emerald-600" />
-                          <span className="text-[11px] text-emerald-700 font-bold">Copied</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3.5 h-3.5" />
-                          <span className="text-[11px]">Copy</span>
-                        </>
-                      )}
-                    </button>
+                  <div>
+                    <p className="text-xs text-slate-500 font-medium mb-1">Account Number:</p>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-emerald-300 shadow-2xs">
+                      <span className="font-mono text-base sm:text-lg font-black text-slate-900 tracking-wider">
+                        {CLINIC_INFO.bankAccountNumber}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          copyToClipboard(CLINIC_INFO.bankAccountNumber, "meezan");
+                        }}
+                        className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs"
+                      >
+                        {copiedAccount === "meezan" ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-white" />
+                            <span className="text-[11px]">Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3.5 h-3.5" />
+                            <span className="text-[11px]">Copy Number</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1131,7 +1079,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Sender Account Name (as on JazzCash/EasyPaisa) *
+                    Sender Account Title (as shown on your Banking App) *
                   </label>
                   <input
                     type="text"
@@ -1245,7 +1193,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                       <span className="text-teal-700 underline">Browse</span>
                     </p>
                     <p className="text-xs text-slate-400">
-                      Supports JPG, PNG, WEBP (Max 5MB). Screenshot from JazzCash or EasyPaisa.
+                      Supports JPG, PNG, WEBP (Max 5MB). Screenshot from your banking app showing transfer to Meezan Bank.
                     </p>
                   </div>
                 )}
@@ -1327,7 +1275,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                 <div>
                   <p className="font-extrabold text-amber-900 mb-0.5">Verification Desk Notice</p>
                   <p className="text-slate-600 text-[11px] leading-relaxed">
-                    Your appointment is currently in <strong>PENDING</strong> status. The reception desk at <strong>347- Riwaz Garden, Lahore</strong> must verify your JazzCash/EasyPaisa transaction screenshot. Please click below to send your confirmation to WhatsApp <strong>0320 8119978</strong> for instant staff approval.
+                    Your appointment is currently in <strong>PENDING</strong> status. The reception desk at <strong>347- Riwaz Garden, Lahore</strong> must verify your Meezan Bank transfer screenshot. Please click below to send your confirmation to WhatsApp <strong>0320 8119978</strong> for instant staff approval.
                   </p>
                 </div>
               </div>

@@ -170,7 +170,9 @@ export async function POST(request: Request) {
     }
 
     // 8. Validate Payment Method & Sender Name
-    const paymentMethod = body.paymentMethod === "EasyPaisa" ? "EasyPaisa" : "JazzCash";
+    const paymentMethod = typeof body.paymentMethod === "string" && body.paymentMethod.trim()
+      ? sanitizeInput(body.paymentMethod, 40)
+      : "Meezan Bank";
     const senderName = sanitizeInput(body.senderName, 80);
     if (!senderName || senderName.length < 2) {
       return NextResponse.json(

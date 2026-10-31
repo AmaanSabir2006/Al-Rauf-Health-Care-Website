@@ -31,11 +31,11 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-slate-400 text-xs leading-relaxed">
-              Al Rauf Health Care (Prof. Dr. Muhammad Kamran Rauf). Consultant Physician & Endocrinologist (Associate Professor FMH). Dedicated 20-minute outpatient consultation slots, diabetes, and metabolic care at 347- Riwaz Garden, Lahore.
+              Al Rauf Health Care (Prof. Dr. Muhammad Kamran Rauf). Consultant Physician & Endocrinologist (Professor of Medicine FMH). Dedicated 20-minute outpatient consultation slots, diabetes, and metabolic care at 347- Riwaz Garden, Lahore.
             </p>
             <div className="flex items-center gap-1.5 text-teal-400 text-[11px] font-semibold">
               <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
-              <span>PMC Registered • 5.0 Star Google Rated</span>
+              <span>PMDC Registered • 5.0 Star Google Rated</span>
             </div>
           </div>
 
@@ -162,7 +162,7 @@ export default function Footer() {
         <div className="mt-8 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 text-[11px]">
           <p>© 2026 Al Rauf Health Care (Prof. Dr. Muhammad Kamran Rauf). All rights reserved.</p>
           <p className="flex items-center gap-1">
-            <span>Manual JazzCash & EasyPaisa direct verification • Zero gateway commission</span>
+            <span>Direct Meezan Bank Transfer verification • Zero gateway commission</span>
           </p>
         </div>
       </div>

@@ -196,7 +196,7 @@ export default function FacilitiesSection() {
                 <div className="text-white space-y-1 w-full">
                   <div className="flex items-center justify-center gap-1.5 text-emerald-400 text-xs font-semibold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>PMC-38291-P</span>
+                    <span>PMDC # 42337-P</span>
                     <span className="text-slate-500">•</span>
                     <span>18+ Yrs Exp</span>
                   </div>
@@ -229,7 +229,7 @@ export default function FacilitiesSection() {
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 With more than 18 years of distinguished clinical experience,{" "}
-                <strong>Prof. Dr. Muhammad Kamran Rauf</strong> (Associate Professor of Medicine,
+                <strong>Prof. Dr. Muhammad Kamran Rauf</strong> (Professor of Medicine,
                 Fatima Memorial Hospital) established <strong>Al Rauf Health Care</strong> at 347-
                 Riwaz Garden, Lahore to provide compassionate outpatient consultations, specialized
                 endocrinology & diabetes care, and structured 20-minute scheduling.
@@ -239,7 +239,7 @@ export default function FacilitiesSection() {
                 <div className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
                   <span>
-                    <strong>Academic Faculty:</strong> Associate Professor of Medicine at Fatima Memorial Hospital.
+                    <strong>Academic Faculty:</strong> Professor of Medicine at Fatima Memorial Hospital.
                   </span>
                 </div>
                 <div className="flex items-start gap-2.5">
@@ -257,7 +257,7 @@ export default function FacilitiesSection() {
                 <div className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
                   <span>
-                    <strong>PMC Registered:</strong> License PMC-38291-P with full clinical accreditation.
+                    <strong>PMDC Registered:</strong> License PMDC # 42337-P with full clinical accreditation.
                   </span>
                 </div>
               </div>
