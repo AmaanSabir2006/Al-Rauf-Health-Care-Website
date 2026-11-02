@@ -159,6 +159,7 @@ export default function SymptomTriage({ onSelectDoctor }: SymptomTriageProps) {
                         src="/images/dr-kamran-rauf.jpg"
                         alt={matchedDoctor.name}
                         fill
+                        sizes="56px"
                         className="object-cover object-top"
                       />
                     ) : (

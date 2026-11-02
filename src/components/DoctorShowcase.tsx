@@ -154,6 +154,7 @@ export default function DoctorShowcase({ onSelectDoctor }: DoctorShowcaseProps) 
                           src="/images/dr-kamran-rauf.jpg"
                           alt={doc.name}
                           fill
+                          sizes="(max-width: 640px) 96px, 112px"
                           className="object-cover object-top"
                           priority
                         />

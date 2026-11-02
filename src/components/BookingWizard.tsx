@@ -450,14 +450,12 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
           {/* Stepper Progress Bar */}
           <div className="flex items-center justify-center gap-1.5 xs:gap-3 sm:gap-6 mt-6 max-w-md mx-auto">
             <div
-              className={`flex items-center gap-1.5 sm:gap-2 text-xs font-bold ${
-                wizardStep >= 1 ? "text-teal-700" : "text-slate-400"
-              }`}
+              className={`flex items-center gap-1.5 sm:gap-2 text-xs font-bold ${wizardStep >= 1 ? "text-teal-700" : "text-slate-400"
+                }`}
             >
               <span
-                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white shrink-0 ${
-                  wizardStep >= 1 ? "bg-teal-700" : "bg-slate-300"
-                }`}
+                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white shrink-0 ${wizardStep >= 1 ? "bg-teal-700" : "bg-slate-300"
+                  }`}
               >
                 1
               </span>
@@ -465,29 +463,26 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
             </div>
             <div className={`h-0.5 w-3 xs:w-8 sm:w-12 ${wizardStep >= 2 ? "bg-teal-600" : "bg-slate-200"}`}></div>
             <div
-              className={`flex items-center gap-1.5 sm:gap-2 text-xs font-bold ${
-                wizardStep >= 2 ? "text-teal-700" : "text-slate-400"
-              }`}
+              className={`flex items-center gap-1.5 sm:gap-2 text-xs font-bold ${wizardStep >= 2 ? "text-teal-700" : "text-slate-400"
+                }`}
             >
               <span
-                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white shrink-0 ${
-                  wizardStep >= 2 ? "bg-teal-700" : "bg-slate-300"
-                }`}
+                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white shrink-0 ${wizardStep >= 2 ? "bg-teal-700" : "bg-slate-300"
+                  }`}
               >
                 2
               </span>
               <span><span className="hidden xs:inline">Patient & </span>Payment</span>
             </div>
+
             <div className={`h-0.5 w-3 xs:w-8 sm:w-12 ${wizardStep === 3 ? "bg-emerald-600" : "bg-slate-200"}`}></div>
             <div
-              className={`flex items-center gap-1.5 sm:gap-2 text-xs font-bold ${
-                wizardStep === 3 ? "text-emerald-700" : "text-slate-400"
-              }`}
+              className={`flex items-center gap-1.5 sm:gap-2 text-xs font-bold ${wizardStep === 3 ? "text-emerald-700" : "text-slate-400"
+                }`}
             >
               <span
-                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white shrink-0 ${
-                  wizardStep === 3 ? "bg-emerald-600" : "bg-slate-300"
-                }`}
+                className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white shrink-0 ${wizardStep === 3 ? "bg-emerald-600" : "bg-slate-300"
+                  }`}
               >
                 3
               </span>
@@ -530,11 +525,10 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                       type="button"
                       suppressHydrationWarning
                       onClick={() => setSelectedDoctor(doc)}
-                      className={`text-left p-3.5 rounded-2xl border transition-all flex items-center gap-3 cursor-pointer ${
-                        isSelected
+                      className={`text-left p-3.5 rounded-2xl border transition-all flex items-center gap-3 cursor-pointer ${isSelected
                           ? "bg-white border-teal-600 ring-2 ring-teal-600/30 shadow-md"
                           : "bg-white/70 border-slate-200 hover:bg-white hover:border-slate-300"
-                      }`}
+                        }`}
                     >
                       <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 relative bg-[#DFE5E7] border border-slate-200 flex items-center justify-center">
                         {doc.id === "doc-kamran-rauf" ? (
@@ -589,13 +583,12 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                       type="button"
                       suppressHydrationWarning
                       onClick={() => setSelectedDate(d.dateStr)}
-                      className={`min-w-[80px] p-2.5 rounded-2xl border text-center transition-all cursor-pointer ${
-                        isSelected
+                      className={`min-w-[80px] p-2.5 rounded-2xl border text-center transition-all cursor-pointer ${isSelected
                           ? "bg-teal-700 text-white border-teal-700 shadow-md scale-102"
                           : isDoctorActive
-                          ? "bg-white text-slate-800 border-slate-200 hover:border-teal-400 hover:bg-teal-50/50"
-                          : "bg-slate-100 text-slate-400 border-slate-200/60 opacity-60"
-                      }`}
+                            ? "bg-white text-slate-800 border-slate-200 hover:border-teal-400 hover:bg-teal-50/50"
+                            : "bg-slate-100 text-slate-400 border-slate-200/60 opacity-60"
+                        }`}
                     >
                       <p className={`text-[10px] font-bold uppercase tracking-wider ${isSelected ? "text-teal-200" : "text-slate-400"}`}>
                         {d.isToday ? "Today" : d.isTomorrow ? "Tomorrow" : d.dayNameShort}
@@ -738,11 +731,10 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                             setSelectedSlot(slot.time);
                             setErrorMessage(null);
                           }}
-                          className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all text-center border cursor-pointer relative ${
-                            isSelected
+                          className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all text-center border cursor-pointer relative ${isSelected
                               ? "bg-teal-700 text-white border-teal-700 shadow-md ring-4 ring-teal-500/30 scale-103 font-extrabold"
                               : "bg-white text-slate-800 border-slate-200 hover:border-teal-500 hover:bg-teal-50/50"
-                          }`}
+                            }`}
                         >
                           {isSelected && (
                             <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-300 animate-ping mr-1"></span>
@@ -834,11 +826,10 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                 suppressHydrationWarning
                 onClick={handleProceedToPayment}
                 disabled={!selectedSlot}
-                className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all ${
-                  selectedSlot
+                className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all ${selectedSlot
                     ? "bg-teal-700 hover:bg-teal-800 text-white shadow-md shadow-teal-700/20 cursor-pointer"
                     : "bg-slate-200 text-slate-400 cursor-not-allowed"
-                }`}
+                  }`}
               >
                 <span>Continue to Patient Info & Payment</span>
                 <ChevronRight className="w-4 h-4" />
@@ -1079,11 +1070,10 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                             e.stopPropagation();
                             copyToClipboard(CLINIC_INFO.bankAccountNumber, "meezan");
                           }}
-                          className={`w-full sm:w-auto px-4 py-2.5 sm:py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-95 shrink-0 ${
-                            copiedAccount === "meezan"
+                          className={`w-full sm:w-auto px-4 py-2.5 sm:py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-95 shrink-0 ${copiedAccount === "meezan"
                               ? "bg-emerald-800 text-white shadow-sm ring-2 ring-emerald-400"
                               : "bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white shadow-sm"
-                          }`}
+                            }`}
                         >
                           {copiedAccount === "meezan" ? (
                             <>
@@ -1161,11 +1151,10 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={handleDrop}
                 onClick={() => fileInputRef.current?.click()}
-                className={`p-6 rounded-2xl border-2 border-dashed transition-all text-center cursor-pointer ${
-                  receiptImage
+                className={`p-6 rounded-2xl border-2 border-dashed transition-all text-center cursor-pointer ${receiptImage
                     ? "border-emerald-400 bg-emerald-50/30"
                     : "border-slate-300 hover:border-teal-500 hover:bg-teal-50/30 bg-slate-50/50"
-                }`}
+                  }`}
               >
                 <input
                   ref={fileInputRef}
@@ -1263,11 +1252,10 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
               <button
                 type="submit"
                 disabled={isSubmitting || !receiptImage}
-                className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-extrabold text-sm transition-all cursor-pointer ${
-                  !receiptImage
+                className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-extrabold text-sm transition-all cursor-pointer ${!receiptImage
                     ? "bg-slate-200 text-slate-500 cursor-not-allowed border border-slate-300 shadow-none"
                     : "text-white bg-gradient-to-r from-teal-700 via-teal-600 to-emerald-600 hover:from-teal-800 hover:to-emerald-700 shadow-lg shadow-teal-700/25"
-                }`}
+                  }`}
                 title={
                   !receiptImage
                     ? "Please upload payment transaction screenshot above to book your appointment"

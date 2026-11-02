@@ -3,24 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
-  ShieldCheck,
-  Award,
-  HeartPulse,
-  Pill,
-  Sparkles,
   CheckCircle2,
   Building2,
-  Stethoscope,
-  Clock,
-  Activity,
   Maximize2,
   X,
   ChevronRight,
-  Eye,
-  Check,
 } from "lucide-react";
-import { CLINIC_INFO } from "@/lib/constants";
-import WhatsAppAvatar from "@/components/WhatsAppAvatar";
 
 interface FacilityItem {
   id: string;
@@ -169,103 +157,7 @@ export default function FacilitiesSection() {
       className="py-16 sm:py-20 bg-slate-50 relative overflow-hidden scroll-mt-24 lg:scroll-mt-28"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section 1: Lead Physician Spotlight */}
-        <div className="glass-panel bg-white/95 rounded-3xl p-8 sm:p-12 border border-slate-200/90 shadow-sm mb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Physician Profile Card (WhatsApp Avatar) */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-xl max-w-sm mx-auto border-4 border-white bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-6 sm:p-8 flex flex-col items-center justify-center text-center">
-                {/* Lead Doctor Badge */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 text-[11px] font-bold uppercase tracking-wider mb-4">
-                  <Award className="w-3.5 h-3.5 text-teal-400" />
-                  <span>Lead Consultant & Founder</span>
-                </div>
-
-                {/* Physician Photo */}
-                <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full shadow-2xl ring-4 ring-teal-400/40 overflow-hidden bg-slate-800 shrink-0 mb-4">
-                  <Image
-                    src="/images/dr-kamran-rauf.jpg"
-                    alt="Prof. Dr. Muhammad Kamran Rauf"
-                    fill
-                    className="object-cover object-top"
-                    priority
-                  />
-                </div>
-
-                {/* Physician Details */}
-                <div className="text-white space-y-1 w-full">
-                  <div className="flex items-center justify-center gap-1.5 text-emerald-400 text-xs font-semibold">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>PMDC # 42337-P</span>
-                    <span className="text-slate-500">•</span>
-                    <span>18+ Yrs Exp</span>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                    {CLINIC_INFO.leadPhysician}
-                  </h3>
-                  <span className="text-xs font-bold uppercase tracking-wider text-teal-400 block pt-0.5">
-                    Consultant Physician & Endocrinologist
-                  </span>
-                  <p className="text-xs text-slate-300 font-medium pt-1">
-                    {CLINIC_INFO.leadPhysicianDegrees}
-                  </p>
-                  <p className="text-[11px] text-teal-300 font-semibold pt-0.5">
-                    {CLINIC_INFO.leadPhysicianDesignation}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Physician Narrative */}
-            <div className="lg:col-span-7 space-y-5 text-left">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold uppercase">
-                <Award className="w-3.5 h-3.5 text-teal-600" />
-                <span>Physician Profile & Clinical Leadership</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                Dedicated to Patient-First Healthcare & Modern Evidence-Based Practice
-              </h2>
-
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                With more than 18 years of distinguished clinical experience,{" "}
-                <strong>Prof. Dr. Muhammad Kamran Rauf</strong>, Professor of Medicine at AMDC,
-                established <strong>Al Rauf Health Care</strong> at 347-
-                Riwaz Garden, Lahore to provide compassionate outpatient consultations, specialized
-                endocrinology & diabetes care, and structured 20-minute scheduling.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs text-slate-700 pt-2">
-                <div className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                  <span>
-                    <strong>Academic Faculty:</strong> Professor of Medicine at AMDC.
-                  </span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                  <span>
-                    <strong>Specialist Credentials:</strong> FCPS (Medicine), MRCP-SCE (UK), EBEEDM (RCP-Ireland).
-                  </span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                  <span>
-                    <strong>Endocrinology & Diabetes:</strong> Diabetes (Type 1 & 2), Thyroid disorders, Metabolic Care.
-                  </span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                  <span>
-                    <strong>PMDC Registered:</strong> License PMDC # 42337-P with full clinical accreditation.
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Section 2: Real Clinic Facilities & Interactive Department Tour */}
+        {/* Real Clinic Facilities & Interactive Department Tour */}
         <div className="space-y-8">
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
