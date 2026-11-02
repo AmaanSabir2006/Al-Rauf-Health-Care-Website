@@ -208,6 +208,28 @@
   scrollbar-width: none;
 }
 
+/* Visible touch-friendly horizontal scrollbar for mobile strips */
+.horizontal-scrollbar {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #0d9488 #e2e8f0;
+}
+.horizontal-scrollbar::-webkit-scrollbar {
+  height: 5px;
+}
+.horizontal-scrollbar::-webkit-scrollbar-track {
+  background: #e2e8f0;
+  border-radius: 9999px;
+}
+.horizontal-scrollbar::-webkit-scrollbar-thumb {
+  background: #0d9488;
+  border-radius: 9999px;
+}
+.horizontal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #0f766e;
+}
+
 /* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 7px;

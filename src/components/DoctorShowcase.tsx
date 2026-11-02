@@ -88,8 +88,8 @@ export default function DoctorShowcase({ onSelectDoctor }: DoctorShowcaseProps) 
           </div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+        {/* Filter Tabs with Mobile Touch Scrollbar */}
+        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 mb-8 px-1 sm:px-0 scroll-smooth snap-x touch-pan-x horizontal-scrollbar">
           {CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat;
             const count = getCategoryCount(cat);

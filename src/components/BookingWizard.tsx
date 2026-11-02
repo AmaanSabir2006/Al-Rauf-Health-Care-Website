@@ -571,8 +571,8 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                 </span>
               </div>
 
-              {/* Horizontal Date Pills */}
-              <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+              {/* Horizontal Date Pills with Mobile Scrollbar */}
+              <div className="flex items-center gap-2 overflow-x-auto pb-3 px-1 scroll-smooth snap-x touch-pan-x horizontal-scrollbar">
                 {availableDates.map((d) => {
                   const isSelected = selectedDate === d.dateStr;
                   const isDoctorActive = selectedDoctor.activeDays.includes(d.dayNameShort);

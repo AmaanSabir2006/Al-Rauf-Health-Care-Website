@@ -174,15 +174,16 @@ export default function FacilitiesSection() {
           </div>
 
           {/* Department Navigation Tabs */}
-          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+          <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 pt-1 px-1 sm:px-0 scroll-smooth snap-x touch-pan-x horizontal-scrollbar">
             {FACILITIES_DATA.map((fac) => {
               const isSelected = activeFacilityId === fac.id;
               return (
                 <button
                   key={fac.id}
+                  type="button"
                   suppressHydrationWarning
                   onClick={() => setActiveFacilityId(fac.id)}
-                  className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 border shadow-2xs ${isSelected
+                  className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 border shadow-2xs shrink-0 snap-start ${isSelected
                       ? "bg-teal-700 text-white border-teal-700 shadow-md shadow-teal-700/20 scale-[1.02]"
                       : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100 hover:text-teal-700"
                     }`}
@@ -197,7 +198,7 @@ export default function FacilitiesSection() {
           </div>
 
           {/* Interactive Feature Display Card */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-sm">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-10 border border-slate-200 shadow-sm">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
               {/* Left Column: Real Facility Photograph */}
               <div className="lg:col-span-7">
@@ -246,7 +247,7 @@ export default function FacilitiesSection() {
                 </div>
 
                 {/* Thumbnail Strip for Fast Switching */}
-                <div className="grid grid-cols-5 gap-2 sm:gap-3 mt-4">
+                <div className="flex sm:grid sm:grid-cols-5 gap-2 sm:gap-3 mt-4 overflow-x-auto pb-2 sm:pb-0 horizontal-scrollbar snap-x">
                   {FACILITIES_DATA.map((fac) => {
                     const isSelected = activeFacilityId === fac.id;
                     return (
@@ -255,7 +256,7 @@ export default function FacilitiesSection() {
                         type="button"
                         suppressHydrationWarning
                         onClick={() => setActiveFacilityId(fac.id)}
-                        className={`relative rounded-xl overflow-hidden aspect-4/3 border-2 transition-all cursor-pointer ${isSelected
+                        className={`relative shrink-0 w-16 sm:w-auto rounded-xl overflow-hidden aspect-4/3 border-2 transition-all cursor-pointer snap-start ${isSelected
                             ? "border-teal-600 ring-2 ring-teal-500/40 scale-105 shadow-md"
                             : "border-slate-200 opacity-60 hover:opacity-100 hover:border-slate-300"
                           }`}
@@ -330,39 +331,48 @@ export default function FacilitiesSection() {
             </div>
           </div>
 
-          {/* Quick Department Cards Strip */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 pt-4">
-            {FACILITIES_DATA.map((fac) => (
-              <div
-                key={fac.id}
-                onClick={() => setActiveFacilityId(fac.id)}
-                className={`p-4 rounded-2xl bg-white border transition-all cursor-pointer group ${activeFacilityId === fac.id
-                    ? "border-teal-500 shadow-md ring-1 ring-teal-500/30"
-                    : "border-slate-200 hover:border-teal-300 hover:shadow-sm"
-                  }`}
-              >
-                <div className="relative rounded-xl overflow-hidden aspect-16/10 mb-3 bg-slate-100">
-                  <Image
-                    src={fac.image}
-                    alt={fac.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 25vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-2 left-2">
-                    <span className="px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-900/80 text-white backdrop-blur-xs">
-                      {fac.tabLabel}
-                    </span>
+          {/* Quick Department Cards Strip with Touch-Friendly Horizontal Scrollbar on Mobile */}
+          <div className="pt-4">
+            <div className="sm:hidden flex items-center justify-between text-xs text-slate-500 font-semibold px-1 pb-2">
+              <span>All Clinical Facilities</span>
+              <span className="text-teal-700 font-bold flex items-center gap-1">
+                <span>Scroll facilities</span>
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+            <div className="flex overflow-x-auto gap-3.5 pb-4 px-1 snap-x snap-mandatory scroll-smooth sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 sm:gap-4 sm:px-0 sm:overflow-visible horizontal-scrollbar">
+              {FACILITIES_DATA.map((fac) => (
+                <div
+                  key={fac.id}
+                  onClick={() => setActiveFacilityId(fac.id)}
+                  className={`w-[78vw] min-w-[260px] max-w-[290px] shrink-0 snap-start sm:w-auto sm:min-w-0 sm:shrink p-4 rounded-2xl bg-white border transition-all cursor-pointer group ${activeFacilityId === fac.id
+                      ? "border-teal-500 shadow-md ring-2 ring-teal-500/30 scale-[1.01]"
+                      : "border-slate-200 hover:border-teal-300 hover:shadow-sm"
+                    }`}
+                >
+                  <div className="relative rounded-xl overflow-hidden aspect-16/10 mb-3 bg-slate-100">
+                    <Image
+                      src={fac.image}
+                      alt={fac.title}
+                      fill
+                      sizes="(max-width: 640px) 280px, (max-width: 768px) 50vw, 20vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-2 left-2">
+                      <span className="px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-900/80 text-white backdrop-blur-xs">
+                        {fac.tabLabel}
+                      </span>
+                    </div>
                   </div>
+                  <h5 className="font-bold text-slate-900 text-xs sm:text-sm group-hover:text-teal-700 transition-colors line-clamp-1">
+                    {fac.title}
+                  </h5>
+                  <p className="text-[11px] text-slate-500 mt-1 line-clamp-2">
+                    {fac.subtitle}
+                  </p>
                 </div>
-                <h5 className="font-bold text-slate-900 text-xs sm:text-sm group-hover:text-teal-700 transition-colors line-clamp-1">
-                  {fac.title}
-                </h5>
-                <p className="text-[11px] text-slate-500 mt-1 line-clamp-2">
-                  {fac.subtitle}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -370,20 +380,20 @@ export default function FacilitiesSection() {
       {/* Lightbox / High-Resolution Modal */}
       {modalImage && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
           onClick={() => setModalImage(null)}
         >
           <div
-            className="relative max-w-4xl w-full bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-700"
+            className="relative max-w-4xl w-full bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-slate-700 max-h-[92vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="p-4 sm:p-5 flex items-center justify-between border-b border-slate-800 text-white">
+            <div className="p-3.5 sm:p-5 flex items-center justify-between border-b border-slate-800 text-white shrink-0">
               <div>
-                <span className="text-xs font-bold text-teal-400 uppercase tracking-wider block">
+                <span className="text-[11px] sm:text-xs font-bold text-teal-400 uppercase tracking-wider block">
                   {modalImage.badge}
                 </span>
-                <h4 className="text-base sm:text-lg font-extrabold">{modalImage.title}</h4>
+                <h4 className="text-sm sm:text-lg font-extrabold line-clamp-1">{modalImage.title}</h4>
               </div>
               <button
                 type="button"
@@ -396,7 +406,7 @@ export default function FacilitiesSection() {
             </div>
 
             {/* Modal Image */}
-            <div className="relative aspect-4/3 sm:aspect-16/10 w-full bg-black">
+            <div className="relative aspect-4/3 sm:aspect-16/10 w-full bg-black flex-1 min-h-[220px]">
               <Image
                 src={modalImage.src}
                 alt={modalImage.title}
@@ -407,9 +417,9 @@ export default function FacilitiesSection() {
             </div>
 
             {/* Modal Footer */}
-            <div className="p-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-              <span>Al Rauf Health Care · 347- Riwaz Garden, Lahore</span>
-              <span className="text-teal-400 font-semibold">Verified Clinical Facility</span>
+            <div className="p-3 sm:p-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-[11px] sm:text-xs text-slate-400 shrink-0">
+              <span className="truncate pr-2">Al Rauf Health Care · 347- Riwaz Garden</span>
+              <span className="text-teal-400 font-semibold whitespace-nowrap">Verified Facility</span>
             </div>
           </div>
         </div>
