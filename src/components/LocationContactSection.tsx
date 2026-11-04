@@ -290,7 +290,7 @@ export default function LocationContactSection() {
               <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3.5 shadow-2xs">
                 <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 border border-slate-200">
                   <Image
-                    src="/images/clinic-facade-v2.jpg"
+                    src="/images/clinic-facade-v3.jpg"
                     alt="Al Rauf Health Care Building Exterior - 347 Riwaz Garden Lahore"
                     fill
                     sizes="80px"

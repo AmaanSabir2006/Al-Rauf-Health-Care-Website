@@ -56,7 +56,7 @@ const FACILITIES_DATA: FacilityItem[] = [
     badge: "347- Riwaz Garden, Lahore",
     title: "Clinic Building Exterior & Easy Access",
     subtitle: "Neoclassical white facade with illuminated entrance and convenient parking",
-    image: "/images/clinic-facade-v2.jpg",
+    image: "/images/clinic-facade-v3.jpg",
     aspectRatio: "aspect-4/3",
     description:
       "Centrally situated at 347- Riwaz Garden, Lahore (near Chauburji Chowk). The clinic features a distinctive neoclassical white architectural facade with the official AHC emblem, wide access steps with sturdy handrails, evening illumination, and dedicated motorcycle and vehicle parking right at the entrance.",

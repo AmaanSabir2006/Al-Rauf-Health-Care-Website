@@ -119,7 +119,7 @@ export default function HeroSection({
               {/* Main Clinic Facade Image */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 aspect-[3/4]">
                 <Image
-                  src="/images/clinic-facade-v2.jpg"
+                  src="/images/clinic-facade-v3.jpg"
                   alt="Al Rauf Health Care Building Exterior - 347- Riwaz Garden Lahore (Prof. Dr. Muhammad Kamran Rauf)"
                   fill
                   sizes="(max-width: 1024px) 100vw, 420px"
