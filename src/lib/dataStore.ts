@@ -41,129 +41,24 @@ function ensureDirectoryAndFile() {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   }
 
-  let shouldReseed = false;
+  let shouldInitialize = false;
 
   if (!fs.existsSync(APPOINTMENTS_FILE)) {
-    shouldReseed = true;
+    shouldInitialize = true;
   } else {
     try {
       const raw = fs.readFileSync(APPOINTMENTS_FILE, "utf-8");
       const parsed = JSON.parse(raw);
-      // If file contains stale doctors or bloated Base64 data, sanitize it
-      if (Array.isArray(parsed)) {
-        let modified = false;
-        const sanitized = parsed.map((apt: any) => {
-          // If receiptUrl contains massive base64, persist to disk or fallback
-          if (apt.receiptUrl && typeof apt.receiptUrl === "string" && apt.receiptUrl.startsWith("data:image")) {
-            const saved = savePaymentReceipt(apt.receiptUrl);
-            apt.receiptUrl = saved.success && saved.filePath ? saved.filePath : "/images/sample-receipt.jpg";
-            modified = true;
-          }
-          // Ensure fee is 4000
-          if (apt.doctorFee !== 4000) {
-            apt.doctorFee = 4000;
-            modified = true;
-          }
-          // Ensure doctor aligns with active clinic doctors
-          const validDoc = CLINIC_DOCTORS.find((d) => d.id === apt.doctorId);
-          if (!validDoc) {
-            // Remap unknown doctor to Dr. Kamran Rauf
-            apt.doctorId = "doc-kamran-rauf";
-            apt.doctorName = "Prof. Dr. Muhammad Kamran Rauf";
-            apt.doctorSpecialty = "Consultant Physician & Endocrinologist";
-            apt.doctorRoom = "01";
-            modified = true;
-          }
-          return apt;
-        });
-
-        if (modified) {
-          fs.writeFileSync(APPOINTMENTS_FILE, JSON.stringify(sanitized, null, 2), "utf-8");
-        }
-      } else {
-        shouldReseed = true;
+      if (!Array.isArray(parsed)) {
+        shouldInitialize = true;
       }
     } catch (e) {
-      shouldReseed = true;
+      shouldInitialize = true;
     }
   }
 
-  if (shouldReseed) {
-    const today = new Date();
-    const todayStr = today.toISOString().split("T")[0];
-
-    // Seed realistic sample appointments with official doctors (PKR 4,000)
-    const seedAppointments: Appointment[] = [
-      {
-        id: "apt-seed-1",
-        tokenNumber: "CLN-2026-1042",
-        patientName: "Muhammad Zubair Khan",
-        patientPhone: "0301-8492019",
-        patientAge: 46,
-        patientGender: "Male",
-        reasonForVisit: "Diabetes HbA1c review and thyroid hormonal profile consultation",
-        doctorId: "doc-kamran-rauf",
-        doctorName: "Prof. Dr. Muhammad Kamran Rauf",
-        doctorSpecialty: "Consultant Physician & Endocrinologist",
-        doctorFee: 4000,
-        doctorRoom: "01",
-        date: todayStr,
-        timeSlot: "04:20 PM",
-        paymentMethod: "JazzCash",
-        senderName: "Muhammad Zubair",
-        trxId: "TRX-98314207",
-        receiptUrl: "/images/sample-receipt.jpg",
-        status: "PENDING",
-        createdAt: new Date(Date.now() - 35 * 60 * 1000).toISOString(),
-      },
-      {
-        id: "apt-seed-2",
-        tokenNumber: "CLN-2026-1088",
-        patientName: "Zainab Bibi",
-        patientPhone: "0321-4478192",
-        patientAge: 38,
-        patientGender: "Female",
-        reasonForVisit: "Abdominal and pelvic ultrasound scan consultation",
-        doctorId: "doc-asma-kamran",
-        doctorName: "Dr. Asma Kamran",
-        doctorSpecialty: "Consultant Radiologist",
-        doctorFee: 4000,
-        doctorRoom: "02",
-        date: todayStr,
-        timeSlot: "03:20 PM",
-        paymentMethod: "EasyPaisa",
-        senderName: "Muhammad Imran",
-        trxId: "EP-7391024",
-        receiptUrl: "/images/sample-receipt.jpg",
-        status: "CONFIRMED",
-        createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-      },
-      {
-        id: "apt-seed-3",
-        tokenNumber: "CLN-2026-1015",
-        patientName: "Haji Abdul Rehman",
-        patientPhone: "0300-5599201",
-        patientAge: 56,
-        patientGender: "Male",
-        reasonForVisit: "Kidney stone evaluation and urological consultation",
-        doctorId: "doc-arslan-mir",
-        doctorName: "Dr. Arslan Mir",
-        doctorSpecialty: "Consultant Urologist & Andrologist",
-        doctorFee: 4000,
-        doctorRoom: "03",
-        date: todayStr,
-        timeSlot: "05:00 PM",
-        paymentMethod: "JazzCash",
-        senderName: "Abdul Rehman",
-        trxId: "JC-1029481",
-        receiptUrl: "/images/sample-receipt.jpg",
-        status: "CHECKED_IN",
-        checkedInAt: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
-        createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
-      },
-    ];
-
-    fs.writeFileSync(APPOINTMENTS_FILE, JSON.stringify(seedAppointments, null, 2), "utf-8");
+  if (shouldInitialize) {
+    fs.writeFileSync(APPOINTMENTS_FILE, JSON.stringify([], null, 2), "utf-8");
   }
 }
 
