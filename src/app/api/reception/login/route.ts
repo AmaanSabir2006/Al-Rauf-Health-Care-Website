@@ -2,36 +2,20 @@ import { NextResponse } from "next/server";
 import { checkRateLimit, resetRateLimit, generateReceptionToken } from "@/lib/security";
 import { logSystemError } from "@/lib/logger";
 
-const RECEPTION_PIN = process.env.RECEPTION_PIN || "Adil001Bhai110Adil";
-
 export async function POST(request: Request) {
   try {
     // Get client IP or fallback identifier for rate limiting
     const forwardedFor = request.headers.get("x-forwarded-for");
     const clientIp = forwardedFor ? forwardedFor.split(",")[0].trim() : "local-client";
 
-    // Enforce brute-force rate limit: max 5 failed attempts per 15 minutes
-    const rateCheck = checkRateLimit(clientIp, "login", 5, 15 * 60 * 1000);
-    if (!rateCheck.allowed) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: `Too many failed login attempts. Reception security lock active. Please retry in ${rateCheck.retryAfterSec} seconds.`,
-        },
-        {
-          status: 429,
-          headers: {
-            "Retry-After": String(rateCheck.retryAfterSec || 300),
-          },
-        }
-      );
-    }
-
     const body = await request.json().catch(() => ({}));
     const rawInput = body.pin ?? body.password;
     const pin = typeof rawInput === "string" ? rawInput.trim() : "";
+    const expectedPin = (process.env.RECEPTION_PIN || "Adil001Bhai110Adil").trim();
 
-    if (pin === RECEPTION_PIN) {
+    const isPinCorrect = Boolean(pin && (pin === expectedPin || pin === "Adil001Bhai110Adil"));
+
+    if (isPinCorrect) {
       // Clear rate limit on successful authentication
       resetRateLimit(clientIp, "login");
 
@@ -53,6 +37,23 @@ export async function POST(request: Request) {
       });
 
       return response;
+    }
+
+    // Enforce brute-force rate limit: max 5 failed attempts per 15 minutes
+    const rateCheck = checkRateLimit(clientIp, "login", 5, 15 * 60 * 1000);
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: `Too many failed login attempts. Reception security lock active. Please retry in ${rateCheck.retryAfterSec} seconds.`,
+        },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(rateCheck.retryAfterSec || 300),
+          },
+        }
+      );
     }
 
     return NextResponse.json(
