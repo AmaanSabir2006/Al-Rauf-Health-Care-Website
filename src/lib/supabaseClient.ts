@@ -14,8 +14,9 @@ export function isSupabaseConfigured(): boolean {
   return Boolean(
     supabaseUrl &&
     supabaseUrl.startsWith("http") &&
-    !supabaseUrl.includes("your-project-id") &&
-    (supabaseServiceRoleKey || supabaseAnonKey)
+    !supabaseUrl.includes("your-project") &&
+    ((supabaseServiceRoleKey && !supabaseServiceRoleKey.includes("your_supabase")) ||
+     (supabaseAnonKey && !supabaseAnonKey.includes("your_supabase")))
   );
 }
 
