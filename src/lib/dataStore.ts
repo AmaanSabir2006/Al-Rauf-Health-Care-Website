@@ -338,6 +338,7 @@ export const DataStore = {
    */
   async getSlotStatuses(doctorId: string, date: string): Promise<SlotStatus[]> {
     let bookedSlots: Array<{ timeSlot: string; status: AppointmentStatus }> = [];
+    let fetchedFromSupabase = false;
 
     if (isSupabaseConfigured()) {
       const supabase = getSupabaseAdmin();
@@ -355,6 +356,7 @@ export const DataStore = {
               timeSlot: d.time_slot,
               status: (d.status === "PENDING_VERIFICATION" ? "PENDING" : d.status) as AppointmentStatus,
             }));
+            fetchedFromSupabase = true;
           }
         } catch (err) {
           console.warn("Supabase slot check failed, fallback to local:", err);
@@ -362,7 +364,7 @@ export const DataStore = {
       }
     }
 
-    if (bookedSlots.length === 0) {
+    if (!fetchedFromSupabase) {
       const list = readAppointments();
       const doctorApts = list.filter(
         (a) => a.doctorId === doctorId && a.date === date && a.status !== "REJECTED"

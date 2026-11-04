@@ -108,7 +108,8 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
 
       try {
         const res = await fetch(
-          `/api/slots?doctorId=${selectedDoctor.id}&date=${selectedDate}`
+          `/api/slots?doctorId=${selectedDoctor.id}&date=${selectedDate}&_t=${Date.now()}`,
+          { cache: "no-store" }
         );
         const data = await res.json();
 

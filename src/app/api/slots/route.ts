@@ -39,15 +39,24 @@ export async function GET(request: Request) {
     const slots = await DataStore.getSlotStatuses(doctorId, date);
     const timingsLabel = getDoctorTimingsLabel(doctorId, dayNameShort);
 
-    return NextResponse.json({
-      success: true,
-      doctorId,
-      date,
-      dayName: dayNameShort,
-      isDoctorActiveOnDay,
-      timingsLabel,
-      slots,
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        doctorId,
+        date,
+        dayName: dayNameShort,
+        isDoctorActiveOnDay,
+        timingsLabel,
+        slots,
+      },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
+        },
+      }
+    );
   } catch (error) {
     const logged = logSystemError(error, {
       source: "api",
