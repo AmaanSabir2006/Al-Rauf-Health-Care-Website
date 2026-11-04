@@ -26,7 +26,7 @@ export const CLINIC_INFO = {
   timings: "Mon–Fri: 04:00 PM – 09:00 PM · Sat: 01:00 PM – 06:00 PM (Sunday Off)",
   drKamranTimings: "Mon–Fri: 04:00 PM – 09:00 PM | Sat: 01:00 PM – 06:00 PM (Sun: Off)",
   generalTimings: "12:00 PM – 09:00 PM (Consultant Specialists)",
-  sundayTimings: "Prof. Dr. Muhammad Kamran Rauf: Off · Emergency Triage On-call",
+  sundayTimings: "Sunday: Closed",
   googleRating: "5.0 ★ (15 Google reviews)",
   googlePlaceId: "ChIJNcXsN1MDGTkRLvHiUVcndjs",
   googleReviewsUrl: "https://search.google.com/local/reviews?placeid=ChIJNcXsN1MDGTkRLvHiUVcndjs&authuser=0&hl=en",
@@ -221,10 +221,10 @@ export function getDoctorTimingsLabel(doctorId: string, dayOfWeekShort?: string)
   if (doctorId === "doc-kamran-rauf") {
     if (dayOfWeekShort) {
       if (["Mon", "Tue", "Wed", "Thu", "Fri"].includes(dayOfWeekShort)) {
-        return "04:00 PM – 09:00 PM (15 Slots · 20-Min Intervals)";
+        return "04:00 PM – 09:00 PM (15 Consultation Slots)";
       }
       if (dayOfWeekShort === "Sat") {
-        return "01:00 PM – 06:00 PM (15 Slots · 20-Min Intervals)";
+        return "01:00 PM – 06:00 PM (15 Consultation Slots)";
       }
       if (dayOfWeekShort === "Sun") {
         return "Closed / Off on Sundays";
@@ -237,7 +237,7 @@ export function getDoctorTimingsLabel(doctorId: string, dayOfWeekShort?: string)
   if (doc?.timings) {
     return doc.timings;
   }
-  return "12:00 PM – 09:00 PM (27 Slots · 20-Min Intervals)";
+  return "12:00 PM – 09:00 PM (27 Consultation Slots)";
 }
 
 // Helper to generate the next 14 dates starting today

@@ -231,7 +231,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
   // Proceed from Step 1 to Step 2
   const handleProceedToPayment = () => {
     if (!selectedSlot) {
-      setErrorMessage("Please select a 20-minute consultation slot to continue.");
+      setErrorMessage("Please select a consultation slot to continue.");
       return;
     }
     setErrorMessage(null);
@@ -441,10 +441,10 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
             <span>Digital Appointment Portal</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Book Your 20-Minute Consultation
+            Book Your Consultation Appointment
           </h2>
           <p className="mt-2 text-sm sm:text-base text-slate-600">
-            Real-time doctor slot isolation. Dedicated 20-minute interval per patient to eliminate waiting room congestion.
+            Real-time doctor slot isolation. Structured appointment scheduling to eliminate waiting room congestion.
           </p>
 
           {/* Stepper Progress Bar */}
@@ -508,7 +508,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
           </div>
         )}
 
-        {/* ================= STEP 1: DOCTOR & 20-MIN SLOT SELECTION ================= */}
+        {/* ================= STEP 1: DOCTOR & TIME SLOT SELECTION ================= */}
         {wizardStep === 1 && (
           <div className="max-w-4xl mx-auto bg-slate-50/70 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
             {/* 1. Choose Doctor Visual Dropdown / Grid */}
@@ -627,16 +627,16 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
               </div>
             </div>
 
-            {/* 3. Dynamic 20-Minute Slots Grid */}
+            {/* 3. Dynamic Slots Grid */}
             <div className="mb-8">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                 <div>
                   <label className="text-sm font-bold text-slate-800 block">
-                    3. Choose 20-Minute Slot ({timingsLabel || "Hours: 12:00 PM – 09:00 PM"}):
+                    3. Choose Time Slot ({timingsLabel || "Hours: 12:00 PM – 09:00 PM"}):
                   </label>
                   <span className="text-xs text-slate-500">
                     {slots.length > 0
-                      ? `${slots.length} Dedicated 20-minute slots. Real-time isolation active.`
+                      ? `${slots.length} Consultation slots available. Real-time isolation active.`
                       : "Doctor is off / Closed on this date."}
                   </span>
                 </div>
@@ -869,7 +869,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                     {selectedDoctor.name}
                   </h3>
                   <p className="text-xs text-slate-600 font-medium">
-                    📅 {selectedDate} &nbsp;|&nbsp; ⏰ {selectedSlot} (20-Minute Slot)
+                    📅 {selectedDate} &nbsp;|&nbsp; ⏰ {selectedSlot}
                   </p>
                 </div>
               </div>
@@ -1304,7 +1304,7 @@ export default function BookingWizard({ initialDoctor }: BookingWizardProps) {
                 Booking Placed — Under Staff Review
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto mt-1 mb-5">
-                Your 20-minute slot is temporarily held. The clinic reception desk is verifying your payment screenshot before officially marking your consultation slot as <strong>CONFIRMED</strong>.
+                Your consultation slot is temporarily held. The clinic reception desk is verifying your payment screenshot before officially marking your consultation slot as <strong>CONFIRMED</strong>.
               </p>
 
               {/* Informative Workflow Banner */}

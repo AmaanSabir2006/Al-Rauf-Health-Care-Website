@@ -71,7 +71,7 @@ export default function HomePage() {
           <DoctorShowcase onSelectDoctor={handleSelectDoctor} />
         </SectionErrorBoundary>
 
-        {/* 20-Minute Dynamic Slot Booking Wizard & Manual Payment Flow */}
+        {/* Dynamic Slot Booking Wizard & Manual Payment Flow */}
         <SectionErrorBoundary sectionName="Appointment Booking Wizard">
           <BookingWizard initialDoctor={selectedDoctor} />
         </SectionErrorBoundary>

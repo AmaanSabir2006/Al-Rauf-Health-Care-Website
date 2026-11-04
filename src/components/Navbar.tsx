@@ -256,7 +256,7 @@ export default function Navbar({ onOpenTracker }: NavbarProps) {
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-teal-700 via-teal-600 to-emerald-600 hover:from-teal-800 hover:to-emerald-700 shadow-md transition-all cursor-pointer"
               >
                 <Calendar className="w-4 h-4 text-teal-100" />
-                <span>Book 20-Minute Consultation</span>
+                <span>Book In-Person Consultation</span>
               </a>
 
               <a

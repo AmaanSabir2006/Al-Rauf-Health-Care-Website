@@ -112,9 +112,6 @@ export default function LocationContactSection() {
                       Other Specialists: 12:00 PM – 09:00 PM (Active Days)
                     </p>
                   </div>
-                  <p className="text-[11px] text-rose-600 font-semibold mt-1">
-                    Sunday: Prof. Dr. Muhammad Kamran Rauf is OFF (Closed). Emergency triage on-call only.
-                  </p>
                 </div>
               </div>
 

@@ -1037,7 +1037,7 @@ export default function ReceptionDesk() {
                           <p className="font-extrabold text-teal-800">{apt.timeSlot}</p>
                           <p className="text-xs text-slate-600 font-medium">{apt.date}</p>
                           <span className="text-[10px] text-slate-400 block mt-0.5">
-                            20-Minute Window
+                            Consultation Slot
                           </span>
                         </td>
 
@@ -1269,7 +1269,7 @@ export default function ReceptionDesk() {
                           Slot Time
                         </span>
                         <p className="font-black text-teal-900 mt-0.5">{apt.timeSlot}</p>
-                        <span className="text-[10px] text-slate-500 block">20-Min Window</span>
+                        <span className="text-[10px] text-slate-500 block">Consultation Slot</span>
                       </div>
                     </div>
 

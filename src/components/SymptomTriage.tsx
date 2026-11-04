@@ -94,7 +94,7 @@ export default function SymptomTriage({ onSelectDoctor }: SymptomTriageProps) {
 
             <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-teal-700 bg-teal-50/80 px-3.5 py-2 rounded-xl border border-teal-200">
               <Sparkle className="w-4 h-4 text-teal-600 animate-spin" style={{ animationDuration: "8s" }} />
-              <span>Dedicated 20-Min Fixed Intervals</span>
+              <span>Structured Consultation Slots</span>
             </div>
           </div>
 

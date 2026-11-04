@@ -43,7 +43,7 @@ export default function HeroSection({
 
             {/* Subheading */}
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-              Led by <strong className="text-slate-900 font-extrabold">{CLINIC_INFO.leadPhysician}</strong>, {CLINIC_INFO.leadPhysicianDesignation}, our specialized medical center at {CLINIC_INFO.address} provides dedicated 20-minute consultation slots. Expert endocrinology, diabetes care, and internal medicine with instant verification on WhatsApp.
+              Led by <strong className="text-slate-900 font-extrabold">{CLINIC_INFO.leadPhysician}</strong>, {CLINIC_INFO.leadPhysicianDesignation}, our specialized medical center at {CLINIC_INFO.address} provides structured outpatient consultation appointments. Expert endocrinology, diabetes care, and internal medicine with instant verification on WhatsApp.
             </p>
 
             {/* Doctor Specific Consultation Hours Notice Card */}
@@ -65,7 +65,7 @@ export default function HeroSection({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg text-sm text-slate-700 pt-1">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Dedicated 20-Min Fixed Slots</span>
+                <span>Structured Consultation Slots</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />

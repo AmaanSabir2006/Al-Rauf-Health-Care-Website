@@ -31,7 +31,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-slate-400 text-xs leading-relaxed">
-              Al Rauf Health Care (Prof. Dr. Muhammad Kamran Rauf). Consultant Physician & Endocrinologist, Professor of Medicine at AMDC. Dedicated 20-minute outpatient consultation slots, diabetes, and metabolic care at 347- Riwaz Garden, Lahore.
+              Al Rauf Health Care (Prof. Dr. Muhammad Kamran Rauf). Consultant Physician & Endocrinologist, Professor of Medicine at AMDC. Structured outpatient consultation slots, diabetes, and metabolic care at 347- Riwaz Garden, Lahore.
             </p>
             <div className="flex items-center gap-1.5 text-teal-400 text-[11px] font-semibold">
               <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
