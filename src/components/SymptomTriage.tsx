@@ -35,8 +35,8 @@ interface TriageOption {
 const TRIAGE_OPTIONS: TriageOption[] = [
   {
     id: "diabetes-endocrinology",
-    symptom: "Diabetes, Thyroid, Hormones & Internal Medicine",
-    description: "Blood sugar fluctuations (HbA1c), thyroid disorders, hormonal imbalance, metabolic fatigue, fever, or hypertension.",
+    symptom: "Diabetes, Hormones, Metabolic & Internal Medicine",
+    description: "Diabetes (HbA1c), thyroid, PCOS, obesity, pituitary & adrenal disorders, gastric issues, infections, tuberculosis, or hypertension.",
     doctorId: "doc-kamran-rauf",
     category: "Endocrinology & Diabetes",
     icon: Stethoscope,
@@ -44,7 +44,7 @@ const TRIAGE_OPTIONS: TriageOption[] = [
   {
     id: "radiology-ultrasound",
     symptom: "Ultrasound Scans & Diagnostic Radiology",
-    description: "Clinical ultrasound, Doppler scans, abdominal & pelvic imaging, soft tissue, and diagnostic radiology reviews.",
+    description: "Clinical ultrasound, Carotid Doppler, abdominal & pelvic imaging, renal Doppler, and diagnostic radiology reviews.",
     doctorId: "doc-asma-kamran",
     category: "Diagnostic Radiology",
     icon: Activity,
